@@ -55,6 +55,7 @@ def get_tweets(query, pages=25):
                     continue
 
                 tweet_id = tweet.attrs['data-item-id']
+                conversation_id = tweet.find('.tweet')[0].attrs['data-conversation-id']
 
                 time = datetime.fromtimestamp(int(tweet.find('._timestamp')[0].attrs['data-time-ms']) / 1000.0)
 
@@ -109,6 +110,7 @@ def get_tweets(query, pages=25):
 
                 tweets.append({
                     'tweetId': tweet_id,
+                    'conversationId': conversation_id,
                     'isRetweet': is_retweet,
                     'time': time,
                     'text': text,
